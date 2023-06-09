@@ -13,7 +13,7 @@ Usually I'm using this Ansble Playbook to make Red Hat IdM Workshops and showcas
 - A valid trial license of Microsoft Server 2019
 - A virtual machine that fits for W2k19 (usally 4Gbyte of RAM, 50Gbyte of disk)
 - Having WinRM conigured on the W2k19 machine
-- Ansible with the collection community.windows which can be obtained with ```ansible galaxy install community.windows```
+- Ansible with the collection community.windows which can be obtained with ```ansible galaxy collection install community.windows```
 
 ## Preparations
 
@@ -23,7 +23,7 @@ First you need to copy the vars.yml.dist to vars.yml, inventory.dist to inventor
 
 Afterwards, edit the passwd.yml with ```ansible-vault edit passwd.yml``` and set the passwords used for the AD Administrator and the users. 
 
-## Running the playbok
+## Running the playbook
 ```ansible-playbook ad.yml```
 
 
