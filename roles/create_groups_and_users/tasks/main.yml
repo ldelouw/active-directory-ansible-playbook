@@ -1,0 +1,20 @@
+---
+- name: Create Windows Domain groups
+  win_domain_group:
+    name: "{{ item.name }}"
+    scope: "{{ item.scope }}"
+    state: present
+    attributes: "{{ item.attributes|default(omit) }}"
+  with_items: "{{ domaingroups }}"
+
+- name: Create Windows Domain Users
+  win_domain_user:
+    name: "{{ item.name }}"
+    firstname: "{{item.firstname }}"
+    surname: "{{ item.surname }}"
+    password: "{{ item.password }}"
+    groups: "{{ item.groups|default(omit) }}"
+    state: present
+    email: '"{{ item.name }}"@{{ ad_domain_name}}'
+    attributes: "{{ item.attributes|default(omit) }}"
+  with_items: "{{ domainusers }}"

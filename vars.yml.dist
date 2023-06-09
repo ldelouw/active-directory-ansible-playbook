@@ -1,0 +1,26 @@
+---
+ad_domain_name: win.example.com
+ad_safe_mode_password: "{{admin_passwd}}"
+ad_admin_user: "admin@{{ ad_domain_name}}"
+ad_admin_password: "{{admin_passwd}}"
+user_password: "{{admin_passwd}}"
+default_login_shell: "/bin/bash"
+
+domaingroups:
+  - {name: 'jdoe_primary', scope: Global, attributes: {gidNumber: 1001}}
+  - {name: 'hwurst_primary', scope: Global, attributes: {gidNumber: 1002}}
+  - {name: 'jmiller_primary', scope: Global, attributes: {gidNumber: 1003}}
+  - {name: 'jbond_primary', scope: Global, attributes: {gidNumber: 1004}}
+  - {name: 'prod', scope: domainlocal, attributes: {gidNumber: 10000}}
+  - {name: 'test', scope: domainlocal, attributes: {gidNumber: 10001}}
+  - {name: 'dbadmins', scope: domainlocal, attributes: {gidNumber: 10002}}
+  - {name: 'webadmins', scope: domainlocal, attributes: {gidNumber: 10003}}
+  - {name: 'Domain Users', scope: Global, attributes: {gidNumber: 99999}}
+
+
+
+domainusers:
+  - {name: 'jdoe', firstname: 'John', surname: 'Doe', password: '{{ user_passwd }}', groups: "jdoe_primary,prod,dbadmins", attributes: {telephoneNumber: 123-555-555, uidNumber: 1001, gidNumber: 1001, unixHomeDirectory: "/home/jdoe", loginShell: "{{default_login_shell}}"}}
+  - {name: 'hwurst', firstname: 'Hans', surname: 'Wurst', password: '{{ user_passwd }}', groups: "hwurst_primary,prod,webadmins", attributes: {telephoneNumber: 123-555-556, uidNumber: 1002, gidNumber: 1002, loginShell: "{{default_login_shell}}"}}
+  - {name: 'jmiller', firstname: 'Jane', surname: 'Miller', password: '{{ user_passwd }}', groups: "jmiller_primary,test,dbadmins", attributes: {telephoneNumber: 123-555-557, uidNumber: 1003, gidNumber: 1003, loginShell: "{{default_login_shell}}"}}
+  - {name: 'jbond', firstname: 'James', surname: 'Bond', password: '{{ user_passwd }}', groups: "jbond_primary,test,webadmins", attributes: {telephoneNumber: 123-555-558, uidNumber: 1004, gidNumber: 1004, loginShell: "{{default_login_shell}}"}}

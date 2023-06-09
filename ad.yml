@@ -1,0 +1,11 @@
+---
+- hosts: windows
+  vars_files:
+    - vars.yml
+    - passwd.yml
+  roles:
+    - role: dc_install_and_create
+      tags: install
+
+    - role: create_groups_and_users
+      tags: users_and_groups
