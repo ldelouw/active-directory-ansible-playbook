@@ -1,1 +1,1 @@
-# active-directroy-ansible-playbook
+# active-directory-ansible-playbook
